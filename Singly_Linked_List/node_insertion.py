@@ -7,21 +7,58 @@ class LinkedList:
     def __init__(self):
         self.head = None
 
-    def insertBeginning(self,new_data):
-        temp = Node(new_data)
-        temp.next = self.head
-        self.head = temp
+    def insert(self,data,position):
+        temp1 = Node(data)
+        if(position == 1):
+            temp1.next = self.head
+            self.head = temp1
+
+        else:
+            temp2 = self.head
+            for i in range(position-2):
+                temp2 = temp2.next
+            temp1.next = temp2.next
+            temp2.next = temp1
+
 
     def printlist(self):
         temp = self.head
         while(temp != None):
-            print(temp.data)
+            print(temp.data,end= " ")
             temp = temp.next
+
+    def count(self):
+        temp = self.head
+        c = 0
+        while(temp != None):
+            temp = temp.next
+            c = c+1
+        return c
+
 
 if __name__=='__main__':
     llist = LinkedList()
-    n = int(input("Enter number of Node: "))
-    for i in range(n):
-        num = int(input("enter the number :"))
-        llist.insertBeginning(num)
-        llist.printlist()
+    while(True):
+        print("\n1. Insert\n2. Delete\n3. Print\n4. Exit")
+        n = int(input("Enter the Choice: "))
+        if(n == 1):
+            num = int(input("\nEnter the number :"))
+            pos = int(input("Enter the position :"))
+            if(pos > llist.count()+1):
+                print("please enter right position to insert node")
+                pos = int(input("Enter the position :"))
+            llist.insert(num,pos)
+            llist.printlist()
+
+        elif(n == 2):
+            pass
+
+        elif(n == 3):
+            llist.printlist()
+
+        elif(n == 4):
+            break
+
+        else:
+            print("Please enter right choice")
+
