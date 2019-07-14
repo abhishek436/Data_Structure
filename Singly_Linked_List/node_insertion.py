@@ -21,8 +21,22 @@ class LinkedList:
             temp2.next = temp1
 
 
+    def delete(self,position):
+        temp1 = self.head
+        if(position == 1):
+            self.head = temp1.next
+
+        else:
+            temp2 = Node(None)
+            for i in range(position-2):
+                temp1 = temp1.next
+            temp2 = temp1.next.next
+            temp1.next = temp2
+
+
     def printlist(self):
         temp = self.head
+        print("List : ", end=" ")
         while(temp != None):
             print(temp.data,end= " ")
             temp = temp.next
@@ -44,14 +58,19 @@ if __name__=='__main__':
         if(n == 1):
             num = int(input("\nEnter the number :"))
             pos = int(input("Enter the position :"))
-            if(pos > llist.count()+1):
+            while(pos > llist.count()+1):
                 print("please enter right position to insert node")
                 pos = int(input("Enter the position :"))
             llist.insert(num,pos)
             llist.printlist()
 
         elif(n == 2):
-            pass
+            pos = int(input("Enter the position: "))
+            while(pos > llist.count() + 1):
+                print("please enter right position to delete node")
+                pos = int(input("Enter the position :"))
+            llist.delete(pos)
+            llist.printlist()
 
         elif(n == 3):
             llist.printlist()
