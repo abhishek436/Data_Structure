@@ -3,9 +3,11 @@ class Node:
         self.data = data
         self.next = None
 
+
 class LinkedList:
     def __init__(self):
         self.head = None
+
 
     def insert(self,data,position):
         temp1 = Node(data)
@@ -34,6 +36,19 @@ class LinkedList:
             temp1.next = temp2
 
 
+    def reverse(self):
+        temp1 = self.head
+        prev = None
+        temp2 = Node(None)
+
+        while(temp1 != None):
+            temp2 = temp1.next
+            temp1.next = prev
+            prev = temp1
+            temp1 = temp2
+        self.head = prev
+
+
     def printlist(self):
         temp = self.head
         print("List : ", end=" ")
@@ -53,7 +68,7 @@ class LinkedList:
 if __name__=='__main__':
     llist = LinkedList()
     while(True):
-        print("\n1. Insert\n2. Delete\n3. Print\n4. Exit")
+        print("\n1. Insert\n2. Delete\n3. Print\n4. Reverse\n5. Exit")
         n = int(input("Enter the Choice: "))
         if(n == 1):
             num = int(input("\nEnter the number :"))
@@ -76,6 +91,10 @@ if __name__=='__main__':
             llist.printlist()
 
         elif(n == 4):
+            llist.reverse()
+            llist.printlist()
+
+        elif(n == 5):
             break
 
         else:
