@@ -1,3 +1,4 @@
+#unsorted
 class Node:
     def __init__(self,data):
         self.data = data
@@ -21,11 +22,14 @@ class linkedlist:
 
     def removeduplicate(self):
         temp1 = self.head
-        while(temp1.next != None):
-            if(temp1.data == temp1.next.data):
-                temp1.next = temp1.next.next
-            else:
-                temp1 = temp1.next
+        while(temp1 != None):
+            temp2 = temp1
+            while(temp2.next != None):
+                if(temp1.data == temp2.next.data):
+                    temp2.next = temp2.next.next
+                else:
+                    temp2 = temp2.next
+            temp1 = temp1.next
 
     def printlist(self):
         temp = self.head
@@ -34,13 +38,15 @@ class linkedlist:
             temp = temp.next
 
 
+
 if __name__ == '__main__':
     llist = linkedlist()
-    llist.insert(1)
-    llist.insert(2)
-    llist.insert(2)
-    llist.insert(3)
-    llist.insert(3)
+    llist.insert(10)
+    llist.insert(11)
+    llist.insert(12)
+    llist.insert(10)
+    llist.insert(13)
+    llist.insert(12)
 
     print("Before: ",end=" ")
     llist.printlist()
